@@ -1,0 +1,48 @@
+.landing-col>h1 {
+    text-align: center;
+    margin: 1em;
+    font-size: 3em;
+}
+
+.landing-name {
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+.landing-game-id {
+    max-width: 100px;
+    /* margin: auto; */
+    text-align: center;
+}
+
+.landing-game-choice {
+    padding: 1em
+}
+
+.landing-col .col {
+    padding-top: 5em;
+    padding-bottom: 5em;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.landing-left {
+    text-align: right;
+    padding-right: 3em !important;
+    border-right: 1px;
+    border-right-color: black;
+    border-right-style: solid;
+}
+
+.landing-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: left;
+    padding-left: 3em !important;
+}
+
+.landing-right>* {
+    align-self: flex-start;
+}
