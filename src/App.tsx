@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 import Landing from './Landing'
 import Lobby from './Lobby'
@@ -12,8 +11,6 @@ import { Player } from './Types';
 import NameSelection from './NameSelection';
 
 function App() {
-  const [name, setName] = useState<string>('');
-  const [gameId, setGameId] = useState<string>('');
   const [players, setPlayers] = useState<Record<string, Player>>({});
 
   return (
