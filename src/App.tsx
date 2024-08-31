@@ -8,27 +8,8 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-
-enum Team {
-  Red,
-  Blue,
-}
-
-type Spymaster = {
-  team: Team,
-}
-
-type Guesser = {
-  team: Team,
-}
-
-type Spectator = {}
-
-type Player = {
-  id: string,
-  name: string,
-  role: Spymaster | Guesser | Spectator,
-}
+import { Player } from './Types';
+import NameSelection from './NameSelection';
 
 function App() {
   const [name, setName] = useState<string>('');
@@ -40,8 +21,9 @@ function App() {
       <h1 className="display-2">Codenames Solitaire</h1>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing name={name} setName={setName} gameId={gameId} setGameId={setGameId} />} />
-          <Route path="/:game-id" element={<Lobby />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/:gameId/select-name" element={<NameSelection playerId="me" players={players} setPlayers={setPlayers} />} />
+          <Route path="/:gameId/lobby" element={<Lobby playerId="me" players={players} setPlayers={setPlayers} />} />
         </Routes>
       </BrowserRouter>
     </div>

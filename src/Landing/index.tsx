@@ -7,31 +7,16 @@ import './style.css'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-type Props = {
-  name: string,
-  setName: React.Dispatch<React.SetStateAction<string>>,
-  gameId: string,
-  setGameId: React.Dispatch<React.SetStateAction<string>>,
-};
-
-export default function Landing({ name, setName, gameId, setGameId }: Props) {
-  // const [name, setName] = useState('');
-  // const [gameId, setGameId] = useState('');
+export default function Landing() {
+  const [gameId, setGameId] = useState('');
 
   return (
     <Container>
       <Col className="landing-col">
-        <Form.Control
-          type="text"
-          id="name"
-          placeholder="Enter Player Name"
-          className="landing-name"
-          onChange={(event) => setName(event.target.value)}
-        />
         <Container className="landing-game-choice" >
           <Row>
             <Col className="landing-left">
-              <Link to={"test"}><Button disabled={name === ""}>New Game</Button></Link>
+              <Link to={"test/select-name"}><Button>New Game</Button></Link>
             </Col>
             <Col className="landing-right">
               <Form.Control
@@ -42,7 +27,7 @@ export default function Landing({ name, setName, gameId, setGameId }: Props) {
                 className="landing-game-id"
                 onChange={(event) => setGameId(event.target.value)}
               />
-              <Link to={gameId}><Button disabled={name === "" || gameId === ""}>Join Game</Button></Link>
+              <Link to={`${gameId}/lobby`}><Button>Join Game</Button></Link>
             </Col>
           </Row>
         </Container>

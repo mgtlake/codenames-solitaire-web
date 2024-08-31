@@ -4,12 +4,6 @@
     font-size: 3em;
 }
 
-.landing-name {
-    max-width: 300px;
-    margin: auto;
-    text-align: center;
-}
-
 .landing-game-id {
     max-width: 100px;
     /* margin: auto; */

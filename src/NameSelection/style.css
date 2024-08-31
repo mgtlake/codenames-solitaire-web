@@ -1,0 +1,11 @@
+.centred {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.select-name {
+    max-width: 300px;
+    margin: 1em;
+    text-align: center;
+}
