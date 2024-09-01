@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './style.css'
-import { Player, Role, Team } from '../Types';
+import { Player, Role, Spymaster, Guesser, Team } from '../Types';
 
 type Props = {
   playerId: string,
@@ -41,11 +41,17 @@ export default function Lobby({ playerId, players, setPlayers }: Props) {
     if (role === Role.Spymaster && Object.entries(players)
       .filter(([_key, player]) => player.role.kind === role &&
         player.role.team === team).length > 0) {
-      return
+      return;
     }
-    if (players[playerId].role.kind === Role.Spectator) {
-      return <Button onClick={(_event) => handleJoin(role, team)}>Join</Button>
+
+    if (players[playerId].role.kind !== Role.Spectator) {
+      const playerRole = players[playerId].role as Spymaster | Guesser;
+      if (playerRole.kind === role && playerRole.team === team) {
+        return;
+      };
     }
+
+    return <Button onClick={(_event) => handleJoin(role, team)}>Join</Button>;
   }
 
   function maybeRenderLeaveButton(id: string) {
@@ -59,7 +65,7 @@ export default function Lobby({ playerId, players, setPlayers }: Props) {
       {Object.entries(players)
         .filter(([_key, player]) => player.role.kind === role &&
           player.role.team === team)
-        .map(([key, player]) => <li key={key}>{player.name}{maybeRenderLeaveButton(key)}</li>)}
+        .map(([key, player]) => <li key={key}>{player.name} {maybeRenderLeaveButton(key)}</li>)}
     </ul>;
   }
 
@@ -73,11 +79,6 @@ export default function Lobby({ playerId, players, setPlayers }: Props) {
 
   return (
     <Container>
-      <Row style={{ justifyContent: 'center' }}>
-        <Col md={4}>
-          {renderSpectators()}
-        </Col>
-      </Row>
       <Row>
         <Col md={{ span: 4, offset: 4 }}>
           <h2>Blue Team</h2>
